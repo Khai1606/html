@@ -1,0 +1,370 @@
+<!DOCTYPE html><!DOCTYPE html>
+<html lang="vi">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Cùng xanh hoá thành phố</title>
+		<meta name="description" content="Trang web đơn giản về môi trường và cây xanh – vì một đô thị xanh, sạch, bền vững." />
+		<style>
+			:root{
+				--bg: #0f172a;        /* slate-900 */
+				--card: #111827;      /* gray-900 */
+				--muted: #94a3b8;     /* slate-400 */
+				--text: #e5e7eb;      /* gray-200 */
+				--brand: #22c55e;     /* green-500 */
+				--brand-2: #16a34a;   /* green-600 */
+				--ring: rgba(34,197,94,.35);
+				--shadow: 0 20px 40px rgba(0,0,0,.35);
+				--radius: 18px;
+			}
+			*{
+				box-sizing: border-box
+			}
+			html,body{
+				height: 100%
+			}
+			body{
+				margin: 0;
+				font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+				background: radial-gradient(1200px 800px at 20% 0%, rgba(34,197,94,.12), transparent 60%),
+				radial-gradient(900px 700px at 90% 20%, rgba(16,163,74,.14), transparent 60%),
+				var(--bg);
+				color: var(--text);
+				line-height: 1.6;
+			}
+			a{
+				color: inherit;
+	text-decoration: none
+			}
+			header{
+				position: sticky;
+	top: 0;
+	z-index: 50;
+	background: rgba(15,23,42,.7);
+				backdrop-filter: blur(10px);
+				border-bottom: 1px solid rgba(255,255,255,.06);
+			}
+			.container{
+				max-width: 1100px;
+	margin: 0 auto;
+	padding: 0 18px
+			}
+			.nav{
+				display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 14px 0
+			}
+			.nav .brand{
+				display: flex;
+	gap: 10px;
+	align-items: center;
+	font-weight: 700
+			}
+			.logo{
+				width: 34px;
+	height: 34px;
+	border-radius: 9px;
+	background: conic-gradient(from 180deg at 50% 50%, #22c55e, #16a34a, #22c55e);
+				display: grid;
+	place-items: center;
+	box-shadow: 0 8px 20px rgba(34,197,94,.35)
+			}
+			.logo span{
+				font-size: 18px
+			}
+			.nav a.btn{
+				padding: 9px 14px;
+	border: 1px solid rgba(255,255,255,.12);
+	border-radius: 12px
+			}
+			.nav a.btn:hover{
+				border-color: rgba(255,255,255,.25)
+			}
+			.menu{
+				display: flex;
+	gap: 16px;
+	align-items: center
+			}
+
+			.hero{
+				padding: 80px 0 50px;
+	display: grid;
+	gap: 24px;
+	align-items: center
+			}
+			@media(min-width:900px){
+				.hero{
+					grid-template-columns: 1.1fr .9fr;
+	gap: 36px;
+	padding: 90px 0
+				}
+			}
+			.badge{
+				display: inline-flex;
+	gap: 8px;
+	align-items: center;
+	background: rgba(34,197,94,.15);
+	color: #bbf7d0;
+	padding: 6px 10px;
+	border-radius: 999px;
+	font-size: 13px;
+	border: 1px solid rgba(34,197,94,.35)
+			}
+			h1{
+				font-size: clamp(30px,4vw,46px);
+	line-height: 1.15;
+	margin: 10px 0 0
+			}
+			.lead{
+				color: var(--muted);
+	font-size: clamp(16px,2vw,18px)
+			}
+			.cta{
+				display: flex;
+	gap: 12px;
+	margin-top: 10px
+			}
+			.btn-primary{
+				background: linear-gradient(180deg,var(--brand),var(--brand-2));
+	padding: 12px 16px;
+	border: none;
+	border-radius: 12px;
+	color: #06240f;
+	font-weight: 700;
+	cursor: pointer;
+	box-shadow: 0 10px 30px var(--ring)
+			}
+			.btn-ghost{
+				padding: 12px 16px;
+	border: 1px solid rgba(255,255,255,.15);
+	border-radius: 12px;
+	background: transparent;
+	color: var(--text);
+	cursor: pointer
+			}
+			.card{
+				background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+				border: 1px solid rgba(255,255,255,.07);
+	border-radius: var(--radius);
+	box-shadow: var(--shadow)
+			}
+
+			/* Sections */
+			section{
+				padding: 40px 0
+			}
+			h2{
+				font-size: clamp(22px,3vw,30px);
+	margin: 0 0 8px
+			}
+			.sub{
+				color: var(--muted);
+	margin: 0 0 20px
+			}
+
+			.grid{
+				display: grid;
+	gap: 16px
+			}
+			@media(min-width:800px){
+				.grid.cols-3{
+					grid-template-columns: repeat(3,1fr)
+				}.grid.cols-2{
+					grid-template-columns: repeat(2,1fr)
+				}
+			}
+			.feature{
+				padding: 18px
+			}
+			.feature b{
+				display: block;
+	margin-bottom: 6px
+			}
+
+			.gallery{
+				display: grid;
+	grid-template-columns: repeat(2,1fr);
+	gap: 10px
+			}
+			@media(min-width:700px){
+				.gallery{
+					grid-template-columns: repeat(4,1fr)
+				}
+			}
+			.tile{
+				aspect-ratio: 1/1;
+	border-radius: 14px;
+	display: grid;
+	place-items: center;
+	font-size: 36px
+			}
+			.tile:nth-child(1){
+				background: linear-gradient(135deg,#14532d,#065f46)
+			}
+			.tile:nth-child(2){
+				background: linear-gradient(135deg,#047857,#0f766e)
+			}
+			.tile:nth-child(3){
+				background: linear-gradient(135deg,#1b4332,#2d6a4f)
+			}
+			.tile:nth-child(4){
+				background: linear-gradient(135deg,#0f766e,#15803d)
+			}
+
+			form{
+				display: grid;
+	gap: 12px
+			}
+			input, textarea{
+				background: #0b1220;
+	border: 1px solid rgba(255,255,255,.08);
+	color: var(--text);
+				padding: 12px;
+	border-radius: 12px;
+	outline: none
+			}
+			input:focus, textarea:focus{
+				border-color: var(--brand);
+	box-shadow: 0 0 0 4px var(--ring)
+			}
+			label{
+				font-weight: 600
+			}
+
+			footer{
+				padding: 26px 0;
+	color: #9ca3af;
+	border-top: 1px solid rgba(255,255,255,.06);
+	margin-top: 24px
+			}
+			.small{
+				font-size: 13px
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<div class="container nav">
+				<div class="brand">
+					<div class="logo" aria-hidden="true"><span>🌱</span></div> Cùng xanh hoá</div>
+				<nav class="menu">
+					<a class="btn" href="#vi-sao">Vì sao?</a>
+					<a class="btn" href="#hanh-dong">Hành động</a>
+					<a class="btn" href="#thu-vien">Thư viện</a>
+				</nav>
+			</div>
+		</header>
+		<main class="container">
+			<section class="hero">
+				<div>
+					<span class="badge">🌿 Vì một đô thị xanh — sạch — bền vững</span>
+					<h1>Trồng thêm một cây hôm nay,<br/> thành phố mát lành ngày mai</h1>
+					<p class="lead">Cây xanh hấp thụ CO₂, giảm đảo nhiệt đô thị, tăng đa dạng sinh học và cải thiện sức khỏe tinh thần. Hãy cùng nhau gieo một hạt mầm nhỏ cho tương lai lớn.</p>
+					<div class="cta">
+						<a href="#hanh-dong">
+							<button class="btn-primary">Bắt đầu ngay</button></a>
+						<a href="#vi-sao">
+							<button class="btn-ghost">Tìm hiểu lợi ích</button></a>
+					</div>
+				</div>
+				<div class="card" style="padding:20px">
+					<svg viewBox="0 0 200 200" role="img" aria-label="Minh hoạ cây xanh" style="width:100%;height:auto;display:block">
+						<defs>
+							<linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+								<stop offset="0%" stop-color="#22c55e"/>
+								<stop offset="100%" stop-color="#16a34a"/>
+							</linearGradient>
+						</defs>
+						<rect x="0" y="0" width="200" height="200" rx="18" fill="#0b1220"/>
+						<circle cx="100" cy="95" r="58" fill="url(#g1)" opacity="0.9" />
+						<rect x="90" y="100" width="20" height="70" fill="#14532d" rx="6" />
+						<path d="M100 40 C 70 70, 70 120, 100 150 C 130 120, 130 70, 100 40 Z" fill="#34d399" opacity="0.6"/>
+						<path d="M100 55 C 85 70, 85 110, 100 135 C 115 110, 115 70, 100 55 Z" fill="#86efac" opacity="0.9"/>
+					</svg>
+				</div>
+			</section>
+			<section id="vi-sao">
+				<h2>Vì sao cần cây xanh?</h2>
+				<p class="sub">Một cây trưởng thành có thể hấp thụ tới 20–22&nbsp;kg CO₂ mỗi năm, cung cấp bóng mát và nơi cư trú cho chim, côn trùng có ích.</p>
+				<div class="grid cols-3">
+					<article class="feature card">
+						<b>🌬️ Không khí sạch hơn</b>
+						<p>Cây lọc bụi mịn và các chất ô nhiễm, cải thiện chất lượng không khí quanh trường học, bệnh viện và khu dân cư.</p>
+					</article>
+					<article class="feature card">
+						<b>🌡️ Giảm nhiệt đô thị</b>
+						<p>Tán cây tạo bóng râm, bốc hơi nước làm mát, giúp giảm nhu cầu điều hoà và tiết kiệm năng lượng.</p>
+					</article>
+					<article class="feature card">
+						<b>🦋 Đa dạng sinh học</b>
+						<p>Mạng lưới cây và bụi hoa bản địa là “hành lang xanh” cho các loài thụ phấn và chim di cư.</p>
+					</article>
+				</div>
+			</section>
+			<section id="hanh-dong">
+				<h2>Bạn có thể làm gì?</h2>
+				<p class="sub">Ba bước nhỏ để bắt đầu thay đổi ngay trong tuần này.</p>
+				<div class="grid cols-3">
+					<article class="feature card">
+						<b>1) Trồng cây bản địa</b>
+						<p>Chọn loài phù hợp khí hậu địa phương (ví dụ: bằng lăng, dầu rái, sao đen…). Dễ chăm, sống khoẻ, ít tốn nước.</p>
+					</article>
+					<article class="feature card">
+						<b>2) Chăm sóc & tưới tiết kiệm</b>
+						<p>Tưới vào sáng sớm/chiều mát, dùng mùn phủ gốc để giữ ẩm; tái sử dụng nước mưa nếu có thể.</p>
+					</article>
+					<article class="feature card">
+						<b>3) Gắn kết cộng đồng</b>
+						<p>Tổ chức “cuối tuần xanh”, xin phép trồng cây trước nhà, trường học; cùng theo dõi và ghi chép sự lớn lên của cây.</p>
+					</article>
+				</div>
+			</section>
+			<section id="thu-vien">
+				<h2>Thư viện xanh</h2>
+				<div class="gallery">
+					<div class="tile">🌳</div>
+					<div class="tile">🌲</div>
+					<div class="tile">🌴</div>
+					<div class="tile">🌵</div>
+				</div>
+			</section>
+			<section id="cam-ket" class="card" style="padding:22px">
+				<h2>Để lại cam kết trồng cây 🌱</h2>
+				<form onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã cam kết trồng thêm cây! 🌿'); this.reset();">
+					<div>
+						<label for="name">Họ và tên</label>
+						<input id="name" name="name" required placeholder="Nguyễn Văn A" />
+					</div>
+					<div>
+						<label for="tree">Loài cây dự định trồng</label>
+						<input id="tree" name="tree" placeholder="Bằng lăng, sao đen, sấu…" />
+					</div>
+					<div>
+						<label for="message">Lời nhắn</label>
+						<textarea id="message" name="message" rows="3" placeholder="Tôi sẽ trồng 2 cây trong tháng này…"></textarea>
+					</div>
+					<button class="btn-primary" type="submit">Gửi cam kết</button>
+				</form>
+			</section>
+		</main>
+
+		<footer>
+			<div class="container small">
+				© 2025 Cùng xanh hoá · Made with ♡ cho Trái Đất · <a href="#top">Lên đầu trang</a>
+			</div>
+		</footer>
+
+		<script>
+			// Cuộn mượt khi bấm các liên kết trong thanh menu
+			document.querySelectorAll('a[href^="#"]').forEach(a=>{
+				a.addEventListener('click',e=>{
+					const id = a.getAttribute('href');
+					if (id.length>1) {
+						e.preventDefault(); document.querySelector(id)?.scrollIntoView({behavior:'smooth'});
+					}
+				})
+			})
+		</script>
+	</body>
+</html>
